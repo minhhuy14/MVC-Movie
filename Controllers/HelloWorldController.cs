@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
@@ -11,9 +10,11 @@ namespace MvcMovie.Controllers
             return View();
         }
         //GET /HelloWorld/Welcome/
-        public string Welcome(string name, int ID = 1)
+        public IActionResult Welcome(string name, int numTimes)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+            return View();
         }
     }
 }
